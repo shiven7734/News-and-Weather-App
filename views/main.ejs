@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+        <link rel="stylesheet" href="s.css">
+        
+    <title>NewsAndWeather</title>
+</head>
+<body>
+
+
+
+
+
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <!-- Navbar content -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">WeNews</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="/">Latest News</a>
+              <a class="nav-link" href="/weather">Weather</a>
+              
+              
+            </div>
+          </div>
+        </div>
+      </nav>
+  </nav>
+
+      <div id="main">
+        <div class="container-fluid" id="k">
+            <h1>News Updates</h1>
+            <p>Search all the recent news here! </p>
+            <div id="form">
+            <form action="">
+                <input type="text" size="30" placeholder="Search Here" id="sv"><br><br><br>
+               
+                <button class="btn btn-primary" onclick="get()" type="button">Go Ahead</button>
+            </form>
+            <div id='s'>
+
+            </div>
+
+
+        </div>
+        </div>
+
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+    crossorigin="anonymous"></script>
+    --> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+     
+        
+     get();
+      function get(){
+        $('#s').text("");
+          var key=$("#sv").val();
+          if(key==""){
+            key="latest";
+          }
+        var url="https://newsapi.org/v2/everything?q="+key+"&apiKey=70d3afcbae5143e5a976452f986a5836";
+        $.get(url,(res)=>{
+            console.log(res);
+
+
+for( i=0;i<res.articles.length;i++){
+
+    var ex=`<div class="card" id="a" >
+  <img class="card-img-top" src="${res.articles[i].urlToImage}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">${res.articles[i].title}</h5>
+    <p class="card-text">${res.articles[i].content}</p>
+    <p class="card-text"><small class="text-muted">${res.articles[i].publishedAt}</small></p>
+    <a href="${res.articles[i].url}" target="_blank" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>`;
+
+$('#s').append(ex);
+
+
+}
+        })
+      }
+      
+    </script>
+    
+</body>
+</html>
